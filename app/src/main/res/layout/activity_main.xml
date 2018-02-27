@@ -171,6 +171,44 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btSetImage" />
+
+        <RadioGroup
+            android:id="@+id/rgGend"
+            android:layout_width="86dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="78dp"
+            android:layout_marginTop="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.388"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btSetImage"
+            app:layout_constraintTop_toBottomOf="@+id/btSave"
+            app:layout_constraintVertical_bias="0.256"
+            tools:layout_editor_absoluteY="331dp">
+
+            <RadioButton
+                android:id="@+id/rbmale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Male" />
+
+            <RadioButton
+                android:id="@+id/rbfemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female" />
+
+            <RadioButton
+                android:id="@+id/rbother"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Other" />
+        </RadioGroup>
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

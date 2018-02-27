@@ -9,7 +9,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import solutions.theta.testapp.Models.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,7 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText metName,metEmail;
     CheckBox mcbUser,mcbAdmin;
     ImageView mLogo;
-
+    User oUser=null;
+RadioGroup mrgGenedar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +41,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mcbAdmin=(CheckBox) findViewById(R.id.cbAdmin);
         mLogo=(ImageView) findViewById(R.id.imgLogo);
         mbtNext=(Button) findViewById(R.id.btNext);
+        mrgGenedar=(RadioGroup) findViewById(R.id.rgGend);
         mbtSave.setOnClickListener(this);
         mbtSetImage.setOnClickListener(this);
         mbtDefault.setOnClickListener(this);
         mbtClear.setOnClickListener(this);
         mbtNext.setOnClickListener(this);
+        oUser=new User();
     }
 
     @Override
@@ -68,11 +75,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                mLogo.setImageResource(R.drawable.logo);
                 break;
             case R.id.btNext:
-                Intent oIntent=new Intent(MainActivity.this,DetailActivity.class);
-                oIntent.putExtra("name",metName.getText().toString());
-                oIntent.putExtra("email",metEmail.getText().toString());
-                startActivity(oIntent);
+
+                Validation();
+                if(oUser.getName()!=null && !oUser.getName().isEmpty()) {
+                    Intent oIntent = new Intent(this, DetailActivity.class);
+                    oIntent.putExtra("objuser", oUser);
+                    startActivity(oIntent);
+                }
                 break;
         }
     }
+
+    private void Validation() {
+        if(metName.getText().toString().length()==0){
+            metName.setError("Name is Required");
+        }else{
+            oUser.setName(metName.getText().toString());
+        }
+        if(metEmail.getText().toString().length()==0){
+            metEmail.setError("Email is Required");
+        }else{
+            oUser.setEmail(metEmail.getText().toString());
+        }
+        int Selectedid=mrgGenedar.getCheckedRadioButtonId();
+        RadioButton ordbtn=(RadioButton)findViewById(Selectedid);
+       // oUser.setGendar(ordbtn.getText().toString());
+    }
+
+
 }
